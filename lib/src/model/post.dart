@@ -33,7 +33,7 @@ final class Post {
 
   final Uri? largeFileUrl;
 
-  final Uri previewFileUrl;
+  final Uri? previewFileUrl;
 
   final String? ext;
 
@@ -118,9 +118,13 @@ final class Post {
         parentId = json['parent_id'],
         source = json['source'],
         md5 = json['md5'],
-        fileUrl = Uri.parse(json['file_url']),
-        largeFileUrl = Uri.parse(json['large_file_url']),
-        previewFileUrl = Uri.parse(json['preview_file_url']),
+        fileUrl = json['file_url'] != null ? Uri.parse(json['file_url']) : null,
+        largeFileUrl = json['large_file_url'] != null
+            ? Uri.parse(json['large_file_url'])
+            : null,
+        previewFileUrl = json['preview_file_url'] != null
+            ? Uri.parse(json['preview_file_url'])
+            : null,
         ext = json['ext'],
         fileExt = json['file_ext'],
         fileSize = json['file_size'],
