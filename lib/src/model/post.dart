@@ -29,9 +29,9 @@ final class Post {
 
   final String? md5;
 
-  final Uri fileUrl;
+  final Uri? fileUrl;
 
-  final Uri largeFileUrl;
+  final Uri? largeFileUrl;
 
   final Uri previewFileUrl;
 
