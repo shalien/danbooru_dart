@@ -51,7 +51,7 @@ final class Post {
 
   final int tagCountArtist;
 
-  final int tagCopyright;
+  final int? tagCopyright;
 
   final int tagCountCharacter;
 
