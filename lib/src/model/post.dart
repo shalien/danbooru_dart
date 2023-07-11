@@ -35,7 +35,9 @@ final class Post {
 
   final Uri previewFileUrl;
 
-  final String ext;
+  final String? ext;
+
+  final String? fileExt;
 
   final int fileSize;
 
@@ -84,6 +86,7 @@ final class Post {
     required this.largeFileUrl,
     required this.previewFileUrl,
     required this.ext,
+    required this.fileExt,
     required this.fileSize,
     required this.imageWidth,
     required this.score,
@@ -119,6 +122,7 @@ final class Post {
         largeFileUrl = Uri.parse(json['large_file_url']),
         previewFileUrl = Uri.parse(json['preview_file_url']),
         ext = json['ext'],
+        fileExt = json['file_ext'],
         fileSize = json['file_size'],
         imageWidth = json['image_width'],
         score = json['score'],
@@ -169,5 +173,6 @@ final class Post {
         createdAt = DateTime.parse(xml.getAttribute('created_at')!),
         updatedAt = DateTime.parse(xml.getAttribute('updated_at')!),
         tagCopyright = int.parse(xml.getAttribute('tag_copyright')!),
-        tagStringCopyright = xml.getAttribute('tag_string_copyright')!;
+        tagStringCopyright = xml.getAttribute('tag_string_copyright')!,
+        fileExt = xml.getAttribute('file_ext')!;
 }
