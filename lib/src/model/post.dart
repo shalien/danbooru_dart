@@ -131,8 +131,12 @@ final class Post {
         tagCountArtist = json['tag_count_artist'],
         tagCountCharacter = json['tag_count_character'],
         tagCountMeta = json['tag_count_meta'],
-        lastCommentBumpedAt = DateTime.parse(json['last_comment_bumped_at']),
-        lastNotedAt = DateTime.parse(json['last_noted_at']),
+        lastCommentBumpedAt = json['last_comment_bumped_at'] != null
+            ? DateTime.parse(json['last_comment_bumped_at'])
+            : null,
+        lastNotedAt = json['last_noted_at'] != null
+            ? DateTime.parse(json['last_noted_at'])
+            : null,
         tagCopyright = json['tag_string_character'],
         tagStringCopyright = json['tag_string_character'],
         hasChildren = json['has_children'],
