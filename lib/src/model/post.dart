@@ -137,8 +137,8 @@ final class Post {
         lastNotedAt = json['last_noted_at'] != null
             ? DateTime.parse(json['last_noted_at'])
             : null,
-        tagCopyright = json['tag_string_character'],
-        tagStringCopyright = json['tag_string_character'],
+        tagCopyright = json['tag_copyright'],
+        tagStringCopyright = json['tag_string_copyright'],
         hasChildren = json['has_children'],
         imageHeight = json['image_height'],
         createdAt = DateTime.parse(json['created_at']),
