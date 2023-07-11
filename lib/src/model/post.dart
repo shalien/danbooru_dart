@@ -7,7 +7,7 @@ final class Post {
 
   final int uoloaderId;
 
-  final int approverId;
+  final int? approverId;
 
   final String tagString;
 
