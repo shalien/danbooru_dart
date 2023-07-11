@@ -27,7 +27,7 @@ final class Post {
 
   final String source;
 
-  final String md5;
+  final String? md5;
 
   final Uri fileUrl;
 
