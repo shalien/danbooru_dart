@@ -7,10 +7,17 @@ environment:
   sdk: ^3.0.5
 
 dependencies:
+  freezed_annotation: ^2.4.1
   http: ^1.1.0
+  json_annotation: ^4.8.1
+  json_serializable: ^6.7.1
   meta: ^1.9.1
   xml: ^6.3.0
 
 dev_dependencies:
+  build_runner: ^2.4.6
+  freezed: ^2.4.5
   lints: ^2.0.0
+  sha_env: 
+    git: https://github.com/shalien/sha_env.git
   test: ^1.21.0
