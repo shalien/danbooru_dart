@@ -37,10 +37,12 @@ abstract base class Resource {
         }
       });
 
+  @mustBeOverridden
   @override
   String toString() => 'Resource(id: $id, createdAt: $createdAt, '
       'updatedAt: $updatedAt)';
 
+  @mustBeOverridden
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -50,6 +52,7 @@ abstract base class Resource {
           createdAt == other.createdAt &&
           updatedAt == other.updatedAt;
 
+  @mustBeOverridden
   @override
   int get hashCode => id.hashCode ^ createdAt.hashCode ^ updatedAt.hashCode;
 }

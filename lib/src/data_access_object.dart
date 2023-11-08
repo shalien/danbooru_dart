@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:danbooru_dart/src/resources/tag.dart';
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 
 import '../danbooru_dart.dart';
 import 'resource.dart';
 import 'resources/artist.dart';
+import 'resources/artist_version.dart';
 
 part 'dao/artist_data_access_object.dart';
 

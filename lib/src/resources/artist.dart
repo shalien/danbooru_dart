@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:meta/meta.dart';
 
 import '../resource.dart';
-import 'tag.dart';
 
 @immutable
 final class Artist extends Resource {
@@ -88,4 +87,40 @@ final class Artist extends Resource {
       }
     });
   }
+
+  @override
+  String toString() {
+    return 'Artist{name: $name, groupName: $groupName, otherNames: $otherNames, members: $members, urls: $urls, isDeleted: $isDeleted, wikiPage: $wikiPage, isBanned: $isBanned, id: $id, createdAt: $createdAt, updatedAt: $updatedAt}';
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Artist &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          groupName == other.groupName &&
+          otherNames == other.otherNames &&
+          members == other.members &&
+          urls == other.urls &&
+          isDeleted == other.isDeleted &&
+          wikiPage == other.wikiPage &&
+          isBanned == other.isBanned &&
+          id == other.id &&
+          createdAt == other.createdAt &&
+          updatedAt == other.updatedAt;
+
+  @override
+  int get hashCode =>
+      name.hashCode ^
+      groupName.hashCode ^
+      otherNames.hashCode ^
+      members.hashCode ^
+      urls.hashCode ^
+      isDeleted.hashCode ^
+      wikiPage.hashCode ^
+      isBanned.hashCode ^
+      id.hashCode ^
+      createdAt.hashCode ^
+      updatedAt.hashCode;
 }

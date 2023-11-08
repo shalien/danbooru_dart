@@ -4,6 +4,7 @@ import 'package:meta/meta.dart';
 
 import '../resource.dart';
 
+/// The category of a [Tag].
 typedef TagCategory = int;
 
 const TagCategory general = 0;
@@ -62,5 +63,39 @@ final class Tag extends Resource {
         'updated_at': updatedAt?.millisecondsSinceEpoch.toString(),
       },
     });
+  }
+
+  @override
+  String toString() {
+    return 'Tag(name: $name, category: $category, postCount: $postCount, '
+        'isLocked: $isLocked, isDeprecated: $isDeprecated, id: $id, '
+        'createdAt: $createdAt, updatedAt: $updatedAt)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        other is Tag &&
+            runtimeType == other.runtimeType &&
+            name == other.name &&
+            category == other.category &&
+            postCount == other.postCount &&
+            isLocked == other.isLocked &&
+            isDeprecated == other.isDeprecated &&
+            id == other.id &&
+            createdAt == other.createdAt &&
+            updatedAt == other.updatedAt;
+  }
+
+  @override
+  int get hashCode {
+    return name.hashCode ^
+        category.hashCode ^
+        postCount.hashCode ^
+        isLocked.hashCode ^
+        isDeprecated.hashCode ^
+        id.hashCode ^
+        createdAt.hashCode ^
+        updatedAt.hashCode;
   }
 }
