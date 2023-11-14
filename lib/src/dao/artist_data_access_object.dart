@@ -66,9 +66,6 @@ final class ArtistDataAccessObject extends DataAccessObject<Artist> {
 
     final decodedBody = jsonDecode(response.body);
 
-    File file = File('artists.json');
-    await file.writeAsString(response.body);
-
     if (decodedBody.length == 0) {
       return resources;
     }

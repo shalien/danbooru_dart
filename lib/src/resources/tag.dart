@@ -1,8 +1,4 @@
-import 'dart:convert';
-
-import 'package:meta/meta.dart';
-
-import '../resource.dart';
+part of '../resource.dart';
 
 /// The category of a [Tag].
 typedef TagCategory = int;
@@ -25,7 +21,16 @@ final class Tag extends Resource {
 
   final bool isDeprecated;
 
-  Tag(
+  @override
+  const Tag(this.name,
+      {this.category = general,
+      this.postCount = 0,
+      this.isLocked = false,
+      this.isDeprecated = false})
+      : super();
+
+  @override
+  const Tag._(
     this.name, {
     this.category = general,
     this.postCount = 0,
@@ -34,10 +39,10 @@ final class Tag extends Resource {
     int? id,
     DateTime? createdAt,
     DateTime? updatedAt,
-  }) : super(id, createdAt, updatedAt);
+  }) : super._(id, createdAt, updatedAt);
 
   factory Tag.fromJson(Map<String, dynamic> json) {
-    return Tag(
+    return Tag._(
       json['name'],
       category: json['category'],
       postCount: json['post_count'],
@@ -97,5 +102,23 @@ final class Tag extends Resource {
         id.hashCode ^
         createdAt.hashCode ^
         updatedAt.hashCode;
+  }
+
+  @override
+  Tag copyWith({
+    TagCategory? category,
+    bool? isLocked,
+    bool? isDeprecated,
+  }) {
+    return Tag._(
+      name,
+      category: category ?? this.category,
+      postCount: postCount,
+      isLocked: isLocked ?? this.isLocked,
+      isDeprecated: isDeprecated ?? this.isDeprecated,
+      id: id,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+    );
   }
 }

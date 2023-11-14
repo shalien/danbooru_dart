@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:danbooru_dart/danbooru_dart.dart';
-import 'package:danbooru_dart/src/resources/artist.dart';
 import 'package:http/http.dart';
 import 'package:sha_env/sha_env.dart';
 import 'package:test/test.dart';
@@ -16,37 +13,38 @@ void main() async {
         username: env['USERNAME'], apiKey: env['KEY']);
   });
 
-  group('Common data access object method', () {
-    test('Index', () async {
+  group('Testing [Artist] DAO', () {
+    test('index method', () async {
       final artists = await client.artists.index();
 
-      print(artists.length);
-      print(artists.first.name);
-
-      print(artists.first.toString());
-
       expect(artists, isNotNull);
+      expect(artists, isA<List<Artist>>());
     });
 
-    test('Create an artist', () async {
-      final artist = Artist('shalien');
+    test('create method', () async {
+      final Artist newArtist = Artist('exampleName',
+          groupName: 'exampleGroupName', isBanned: false, isDeleted: false);
+
       Artist? createdArtist;
 
       try {
-        createdArtist = await client.artists.create(artist);
+        createdArtist = await client.artists.create(newArtist);
       } on ClientException catch (e) {
         print(e.message);
-        exit(1);
+        fail('Client exception thrown');
       }
       expect(createdArtist, isNotNull);
+      expect(createdArtist, isA<Artist>());
+      expect(createdArtist.name.toLowerCase(), equals(newArtist.name));
+      expect(createdArtist.id, greaterThan(0));
     });
-  });
 
-  group('Specific tests', () {
-    test('Find shalien as artist using name', () async {
-      final artists = await client.artists.index(name: 'shalien');
+    group('Specific tests', () {
+      test('Find shalien as artist using name', () async {
+        final artists = await client.artists.index(name: 'shalien');
 
-      expect(artists, isEmpty);
+        expect(artists, isEmpty);
+      });
     });
   });
 }

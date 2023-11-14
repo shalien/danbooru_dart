@@ -2,9 +2,14 @@ import 'dart:convert';
 
 import 'package:meta/meta.dart';
 
+part 'resources/artist.dart';
+part 'resources/artist_commentary.dart';
+part 'resources/artist_version.dart';
+part 'resources/tag.dart';
+part 'resources/note.dart';
+
 /// Base class for all resources.
 @immutable
-@internal
 abstract base class Resource {
   /// An identifier for the resource.
   final int? id;
@@ -16,10 +21,15 @@ abstract base class Resource {
   final DateTime? updatedAt;
 
   /// Creates a new [Resource].
+  @mustBeOverridden
+  const Resource._(this.id, this.createdAt, this.updatedAt);
+
+  /// Creates a new [Resource].
   @internal
   @mustBeOverridden
-  const Resource(this.id, this.createdAt, this.updatedAt);
+  const Resource() : this._(null, null, null);
 
+  /// Creates a new [Resource] from a JSON object.
   @internal
   @mustBeOverridden
   Resource.fromJson(Map<String, dynamic> json)
@@ -55,4 +65,7 @@ abstract base class Resource {
   @mustBeOverridden
   @override
   int get hashCode => id.hashCode ^ createdAt.hashCode ^ updatedAt.hashCode;
+
+  @mustBeOverridden
+  Resource copyWith();
 }

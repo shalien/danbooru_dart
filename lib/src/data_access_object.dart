@@ -4,12 +4,11 @@ import 'dart:io';
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 
-import '../danbooru_dart.dart';
+import 'danbooru_client.dart';
 import 'resource.dart';
-import 'resources/artist.dart';
-import 'resources/artist_version.dart';
 
 part 'dao/artist_data_access_object.dart';
+part 'dao/artist_commentary_data_access_object.dart';
 
 @immutable
 @internal

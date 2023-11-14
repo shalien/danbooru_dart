@@ -1,8 +1,4 @@
-import 'dart:convert';
-
-import 'package:meta/meta.dart';
-
-import '../resource.dart';
+part of '../resource.dart';
 
 @immutable
 final class Artist extends Resource {
@@ -22,7 +18,19 @@ final class Artist extends Resource {
 
   final bool isBanned;
 
+  @override
   const Artist(this.name,
+      {this.groupName,
+      this.isBanned = false,
+      this.isDeleted = false,
+      this.members,
+      this.otherNames,
+      this.urls,
+      this.wikiPage})
+      : super();
+
+  @override
+  const Artist._(this.name,
       {this.groupName,
       this.isBanned = false,
       this.isDeleted = false,
@@ -33,10 +41,10 @@ final class Artist extends Resource {
       int? id,
       DateTime? createdAt,
       DateTime? updatedAt})
-      : super(id, createdAt, updatedAt);
+      : super._(id, createdAt, updatedAt);
 
   factory Artist.fromJson(Map<String, dynamic> json) {
-    return Artist(
+    return Artist._(
       json['name'],
       groupName: json['group_name'],
       isBanned: json['is_banned'],
@@ -123,4 +131,33 @@ final class Artist extends Resource {
       id.hashCode ^
       createdAt.hashCode ^
       updatedAt.hashCode;
+
+  @override
+  Artist copyWith({
+    String? name,
+    String? groupName,
+    List<String>? otherNames,
+    List<Artist>? members,
+    List<Uri>? urls,
+    bool? isDeleted,
+    String? wikiPage,
+    bool? isBanned,
+    int? id,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) {
+    return Artist._(
+      name ?? this.name,
+      groupName: groupName ?? this.groupName,
+      otherNames: otherNames ?? this.otherNames,
+      members: members ?? this.members,
+      urls: urls ?? this.urls,
+      isDeleted: isDeleted ?? this.isDeleted,
+      wikiPage: wikiPage ?? this.wikiPage,
+      isBanned: isBanned ?? this.isBanned,
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
 }
