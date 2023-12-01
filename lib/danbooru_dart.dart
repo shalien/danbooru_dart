@@ -5,3 +5,5 @@ library;
 
 export 'src/model/post.dart';
 export 'src/danbooru_client.dart';
+
+export 'src/resource.dart';
