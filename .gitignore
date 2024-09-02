@@ -10,3 +10,7 @@ pubspec.lock
 *.json
 *env*
 **/*env*
+.env
+.vscode/
+.idea/
+*.iml
